@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Alfred Web App</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            body{
+                background: #333;
+            }
+            #contenedor{
+                background: linear-gradient( to bottom, #5C625F, #ffebcd);
+                font-family: sans-serif;
+                font-size: 18px;
+                padding: 5px;
+                width: 300px;
+                height: 520px;
+            }
+            .boton{
+                border: solid 0;
+                padding: 10px;
+                margin: 5px;
+                height: 30px;
+                width: 110px;
+                font-weight: 600;
+                color: #fff;
+            }
+        </style>
+        <script type="text/javascript">
+            function cargaContextoCanvas(idCanvas) {
+                var elemento = document.getElementById(idCanvas);
+                if (elemento && elemento.getContext) {
+                    var contexto = elemento.getContext('2d');
+                    if (contexto) {
+                        return contexto;
+                    }
+                }
+                return FALSE;
+            }
+            window.onload = function () {
+                //Recibimos el elemento canvas
+                var ctx = cargaContextoCanvas('alfredAnimation');
+                //Creo una imagen conun objeto Image de Javascript
+                var img = new Image();
+                //indico la URL de la imagen
+                img.src = 'images/Neutral.png';
+                //defino el evento onload del objeto imagen
+                img.onload = function () {
+                    //incluyo la imagen en el canvas
+                    ctx.drawImage(img, 0, 0);
+                };
+            }
+        </script>
+    </head>
+    <body>
+        <div id="contenedor">
+            <center>
+                <canvas id="alfredAnimation" width="300" height="220"></canvas>
+                <div>
+                    <button class="boton" onclick="Feliz()" style="background: #f1d600;">Feliz</button>
+                    <button class="boton" onclick="Enojado()" style="background: red">Enojado</button>
+                </div>
+                <div>
+                    <button class="boton" onclick="Sorprendido()" style="background: #7948A8">Sorprendido</button>
+                    <button class="boton" onclick="Triste()" style="background: #5C625F">Triste</button>
+                </div>
+                <textarea id="conversacion" style="width:250px; height: 150px; resize: none;" readonly=""></textarea>
+                <input id="mensaje" type="text" style="width:170px" placeholder="Comentarios"><button type="submit" style="width: 50px; background: skyblue">Enviar</button>
+            </center>
+        </div>
+        <script src="AlfredAnimacion.js" type="text/javascript"></script>
+    </body>
+</html>
